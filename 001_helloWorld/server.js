@@ -17,7 +17,7 @@ let server = http.createServer(function(request, response){
 		message = 'You are in contact page';
 	}else {
 		message = '<span style="color:red">This page does not exist!</p>';
-		responseStatusCode = 400;
+		responseStatusCode = 404;
 	}
 
 	response.writeHead(responseStatusCode, {"Content-Type": "text/html"});
