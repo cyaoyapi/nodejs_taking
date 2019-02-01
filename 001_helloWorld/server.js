@@ -4,17 +4,33 @@ let url = require('url');
 // A HTTP Server(web) creation 
 let server = http.createServer(function(request, response){
 	let page = url.parse(request.url).pathname;
-	response.writeHead(200, {"Content-Type": "text/html"});
+	let message = '';
+	let responseStatusCode = 200;
+	if(page === '/')
+	{
+		message = 'You are in home page';
+	}else if(page === '/blog'){
+		message = 'You are in blog espace';
+	}else if(page === '/forum'){
+		message = 'You are in forum espace';
+	}else if(page === '/contact'){
+		message = 'You are in contact page';
+	}else {
+		message = '<span style="color:red">This page does not exist!</p>';
+		responseStatusCode = 400;
+	}
+
+	response.writeHead(responseStatusCode, {"Content-Type": "text/html"});
 	response.write(`<!DOCTYPE html>
 		<html>
 			<head>
 				<meta charset="utf-8">
 				<title>My first page with Node.js</title>
 			</head>
-			<body>è
+			<body>
 				<p>Hello world!<p>
 				<p>You're <strong>welcome</strong>!</p>
-				<p>The request come from : <em>${page}</em></p>
+				<p>${page} : ${message}</em></p>
 			</body>
 		</html>`
 	);
