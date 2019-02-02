@@ -2,14 +2,14 @@
  For runing the program, in command line, make :
  	node server.js
 */
-let http = require('http'); 
-let url = require('url'); 
-let querystring = require('querystring');
+let http = require('http'); // import http module
+let url = require('url'); // import url module
+let querystring = require('querystring'); // import querystring
 
 // A HTTP Server(web) creation 
 let server = http.createServer(function(request, response){
-	let page = url.parse(request.url).pathname;
-	let kwargs = querystring.parse(url.parse(request.url).query);
+	let page = url.parse(request.url).pathname; // recovering page's name
+	let kwargs = querystring.parse(url.parse(request.url).query); // recovering page's arguments in a list
 	let name = 'dear visitor';
 	if('name' in kwargs){
 		name = kwargs['name'];
