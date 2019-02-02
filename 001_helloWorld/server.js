@@ -1,3 +1,7 @@
+/* Basic Web server in Node.js.
+ For runing the program, in command line, make :
+ 	node server.js
+*/
 let http = require('http'); 
 let url = require('url'); 
 let querystring = require('querystring');
