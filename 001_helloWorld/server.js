@@ -1,9 +1,16 @@
 let http = require('http'); 
 let url = require('url'); 
+let querystring = require('querystring');
 
 // A HTTP Server(web) creation 
 let server = http.createServer(function(request, response){
 	let page = url.parse(request.url).pathname;
+	let kwargs = querystring.parse(url.parse(request.url).query);
+	let name = 'dear visitor';
+	if('name' in kwargs){
+		name = kwargs['name'];
+	}
+	
 	let message = '';
 	let responseStatusCode = 200;
 	if(page === '/')
@@ -28,7 +35,7 @@ let server = http.createServer(function(request, response){
 				<title>My first page with Node.js</title>
 			</head>
 			<body>
-				<p>Hello world!<p>
+				<p>Hello ${name}<p>
 				<p>You're <strong>welcome</strong>!</p>
 				<p>${page} : ${message}</em></p>
 			</body>
